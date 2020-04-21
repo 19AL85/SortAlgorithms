@@ -50,14 +50,14 @@ namespace SortAlgorithms
 
         private void Swap(SortedItem a, SortedItem b)
         {
-            var tmp = a.Value;
-            a.SetValue(b.Value);
-            b.SetValue(tmp);
+          
 
         }
 
         private void BubbleSortButton_Click(object sender, EventArgs e)
         {
+
+
             var bubble = new BubbleSort<SortedItem>(items);
             bubble.CompareEvent += Bubble_CompareEvent;
             bubble.SwapEvent += Bubble_SwapEvent;
@@ -66,7 +66,14 @@ namespace SortAlgorithms
 
         private void Bubble_SwapEvent(object sender, Tuple<SortedItem, SortedItem> e)
         {
-            Swap(e.Item1, e.Item2);
+            var temp = e.Item1.Number;
+            e.Item1.SetPosition(e.Item2.Number);
+            e.Item2.SetPosition(temp);
+
+            panel3.Refresh();
+
+            e.Item1.SetColor(Color.Blue);
+            e.Item2.SetColor(Color.Blue);
             panel3.Refresh();
         }
 
