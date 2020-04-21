@@ -14,11 +14,13 @@ namespace SortAlgorithms
         public Label Label { get; private set; }
         public int Value { get; private set; }
         public int Number { get; private set; }
+        public int StartNumber { get; private set; }
 
         public SortedItem(int value, int number)
         {
             Value = value;
             Number = number;
+            StartNumber = number;
             ProgressBar = new VerticalProgressBar.VerticalProgressBar();
             Label = new Label();
 
@@ -62,6 +64,16 @@ namespace SortAlgorithms
         public void SetColor(Color color)
         {
             ProgressBar.Color = color;
+        }
+
+        public void Refresh()
+        {
+            Number = StartNumber;
+            var x = Number * 20;
+            ProgressBar.Location = new System.Drawing.Point(x, 3);
+            ProgressBar.Name = "ProgressBar" + Number;
+            Label.Location = new System.Drawing.Point(x, 102);
+            Label.Name = "label" + Number;
         }
 
         public int CompareTo(object obj)
